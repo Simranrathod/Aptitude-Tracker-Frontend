@@ -1,0 +1,157 @@
+/* ===== Global Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ✅ Left section (hamburger + logo aligned perfectly) */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  color: #007bff;
+  font-weight: 600;
+  font-size: 1.5rem;
+  letter-spacing: 1px;
+}
+
+/* ===== Hamburger Button ===== */
+.hamburger-btn {
+  background: transparent;
+  border: none;
+  color: #007bff;
+  font-size: 26px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.hamburger-btn:hover {
+  transform: scale(1.1);
+}
+
+/* ===== Navbar Links ===== */
+.nav-links a {
+  margin: 0 15px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00bcd4;
+}
+
+/* ===== Login Button ===== */
+.login-btn {
+  /* background: #007bff; */
+  /* color: #751717; */
+  border: none;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+  text-decoration: none;
+}
+
+.login-btn:hover {
+  background: #0056b3;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -350px;
+  width: 350px;
+  height: 100vh;
+  background:#fff; 
+  color: #007bff;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 6px;
+  margin-bottom: 10px;
+}
+
+.sidebar button {
+  background: none;
+  border: none;
+  color: #007bff;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  padding: 10px 0;
+  border-radius: 6px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.sidebar button:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffeb3b;
+}
+
+/* ===== Close Button ===== */
+.close-btn {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+  align-self: flex-end;
+  margin-bottom: 10px;
+}
+
+.logout-btn {
+  margin-top: auto;
+  color: #ffdddd;
+}
+
+.logout-btn:hover {
+  background: rgba(255, 99, 99, 0.2);
+  color: #ff9999;
+}
+
+/* ===== Overlay ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(34, 34, 34, 0.4);
+  backdrop-filter: blur(3px);
+  z-index: 1500;
+}
