@@ -4,7 +4,7 @@ import Signin from './Components/Signin'
 import Signup from './Components/Signup'
 import Nav from './Components/Nav'
 import Home from './Components/Home'
-
+import QuestionsPage from './Components/QuestionsPage'
 function App() {
   return (
    <>
@@ -19,6 +19,7 @@ function App() {
     <Route path='/signup' element={<Signup/>}>
 
     </Route>
+    <Route path='/questions/:level' element={<QuestionsPage/>}></Route>
    </Routes>
    </>
   )

@@ -20,7 +20,7 @@ function Signup() {
     console.log(name);
 
     try {
-      const response = await axios.post(" http://localhost:8089/aptitute/signup", {
+      const response = await axios.post("http://localhost:8089/aptitute/signup", {
         name,
         email,
         password,
@@ -28,8 +28,10 @@ function Signup() {
       console.log(response.status);
 
      if (response.status === 200) {
+      localStorage.setItem("userSignedUp", "true");
   navigate("/signin");
 //   login(response.data.token)
+
 }
 
     } catch (err) {
@@ -39,7 +41,7 @@ function Signup() {
   };
 
   return (
-    <div className="signup-container">
+    
       <div className="signup-box">
         <h2>Create Account</h2>
         <form onSubmit={handlechange}>
@@ -85,7 +87,7 @@ function Signup() {
           </p>
         </form>
       </div>
-    </div>
+  
   );
 }
 

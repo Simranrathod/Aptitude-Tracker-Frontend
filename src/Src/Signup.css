@@ -1,90 +1,105 @@
-/* Same background as signin */
+/* 🔹 Center the signup box */
 .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-    /* background: linear-gradient(to right, #c5ced1, #ffffff); */
-  font-family: Arial, sans-serif;
-  background-color: rgba(87, 44, 17, 0.8); 
+  background: linear-gradient(135deg, #007bff, #00bcd4);
+  font-family: "Poppins", sans-serif;
+  user-select: none;
 }
 
-/* Signup box */
+/* 🔹 Signup Box */
 .signup-box {
-  background: #fff;
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-  width: 380px;
+  background: #ffffff;
+  padding: 40px 45px;
+  border-radius: 16px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  width: 360px;
   text-align: center;
+  animation: fadeInUp 0.5s ease-in-out;
 }
 
+/* 🔹 Title */
 .signup-box h2 {
-  margin-bottom: 20px;
-  color: #333;
+  margin-bottom: 25px;
+  color: #007bff;
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
 }
 
-/* Input groups */
+/* 🔹 Input Groups */
 .input-group {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 15px;
+  text-align: left;
+  margin-bottom: 18px;
 }
 
 .input-group label {
   font-size: 14px;
+  color: #333;
+  font-weight: 500;
   margin-bottom: 5px;
-  color: #555;
+  display: block;
 }
 
 .input-group input {
   width: 100%;
-  padding: 10px;
+  padding: 10px 12px;
   border: 1px solid #ccc;
   border-radius: 8px;
   outline: none;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .input-group input:focus {
-  border-color: #2f80ed;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
-/* Button */
+/* 🔹 Signup Button */
 .signup-btn {
   width: 100%;
   padding: 12px;
-  /* background: #2f80ed; */
-   background-color: rgba(63, 31, 11, 0.8); 
+  background: linear-gradient(135deg, #007bff, #00bcd4);
   border: none;
-  color: white;
+  color: #fff;
   font-size: 16px;
   font-weight: bold;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: background 0.3s ease, transform 0.2s;
 }
 
 .signup-btn:hover {
-  /* background: #1b5bbf; */
-   background: rgb(59, 29, 10); 
+  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
-/* Signin link */
+/* 🔹 Signin Link */
 .signin-link {
-  margin-top: 15px;
+  margin-top: 18px;
   font-size: 14px;
-  color: #555;
+  color: #444;
 }
 
-.link-signin{
-  /* color: #edaa2f; */
-  color:rgb(59, 29, 10);
+.link-signin {
+  color: #007bff;
+  font-weight: 600;
   text-decoration: none;
-  font-weight: bold;
 }
 
 .link-signin:hover {
   text-decoration: underline;
+}
+
+/* 🔹 Animation */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
