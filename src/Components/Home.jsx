@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "../Src/Home.css";
-import Signup from "./Signup";
+// import Signup from "./Signup";
 import { RxCross2 } from "react-icons/rx";
 import { useNavigate } from "react-router-dom";
+import Signupmain from "./Signupmain";
 export default function Home() {
 
    const [showSignup, setShowSignup] = useState(false);
@@ -10,13 +11,25 @@ export default function Home() {
    useEffect(()=>{
     const timer=setTimeout(() => {
       const isSignedup=localStorage.getItem("userSignedUp")
-       if (!isSignedup) {
-          setShowSignup(true);
-        }
+       const popupClosedAt = localStorage.getItem("popupClosedAt");
+       if (isSignedup) return;
+       if (popupClosedAt) {
+        const closedTime = parseInt(popupClosedAt);
+        const now = Date.now();
+
+       
+      }
+            setShowSignup(true);
+
     }, 2000);
   
     return ()=>clearTimeout(timer)
    },[])
+    const closePopup = () => {
+    setShowSignup(false);
+    localStorage.setItem("popupClosedAt", Date.now().toString());
+  };
+
   return (
     <div className="home-page">
       {/* Hero Section */}
@@ -53,19 +66,19 @@ export default function Home() {
   <h3>Choose Your Difficulty Level</h3>
   <div className="difficulty-grid">
     <div onClick={()=>navigate("/questions/easy")} className="difficulty-card easy">
-      <h4>🟢 Easy Level</h4>
+      <h4> Easy Level</h4>
       <p>Start your journey with simple aptitude problems to build your basics strong.</p>
       <button className="level-btn">Start Easy</button>
     </div>
 
-    <div onClick={()=>navigate("/questions/medium")}  className="difficulty-card medium">
-      <h4>🟡 Medium Level</h4>
+    <div  onClick={()=>navigate("/questions/medium")} className="difficulty-card medium">
+      <h4>Medium Level</h4>
       <p>Challenge yourself with moderate problems and improve your problem-solving speed.</p>
       <button className="level-btn">Try Medium</button>
     </div>
 
     <div  onClick={()=>navigate("/questions/hard")} className="difficulty-card hard">
-      <h4>🔴 Hard Level</h4>
+      <h4> Hard Level</h4>
       <p>Test your skills with advanced and tricky aptitude questions to master your concepts.</p>
       <button className="level-btn">Go Hard</button>
     </div>
@@ -79,15 +92,16 @@ export default function Home() {
       </footer>
 
       {showSignup && (
-        <div className="popup-overlay" onClick={() => setShowSignup(false)}>
+        <div className="popup-overlay"  onClick={closePopup}>
           <div
             className="popup-content"
             onClick={(e) => e.stopPropagation()} 
           >
-            <button className="close-popup" onClick={() => setShowSignup(false)}>
+            <button className="close-popup" onClick={closePopup}>
              <RxCross2 />
             </button>
-            <Signup />
+            {/* <Signup /> */}
+            <Signupmain/>
           </div>
         </div>
       )}

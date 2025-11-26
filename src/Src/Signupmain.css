@@ -1,5 +1,5 @@
-/* 🔹 Center the signin box */
-.signin-container {
+
+/* .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,10 +7,11 @@
   background: linear-gradient(135deg, #007bff, #00bcd4);
   font-family: "Poppins", sans-serif;
   user-select: none;
-}
+ 
+} */
 
-/* 🔹 Signin Box */
-.signin-box {
+
+.signup-box {
   background: #ffffff;
   padding: 40px 45px;
   border-radius: 16px;
@@ -21,7 +22,7 @@
 }
 
 /* 🔹 Title */
-.signin-box h2 {
+.signup-box h2 {
   margin-bottom: 25px;
   color: #007bff;
   font-size: 1.8rem;
@@ -51,14 +52,13 @@
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-/* 🔹 Input Focus */
 .input-group input:focus {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
 }
 
-/* 🔹 Sign In Button */
-.signin-btn {
+/* 🔹 Signup Button */
+.signup-btn {
   width: 100%;
   padding: 12px;
   background: linear-gradient(135deg, #007bff, #00bcd4);
@@ -71,30 +71,29 @@
   transition: background 0.3s ease, transform 0.2s;
 }
 
-/* Button Hover */
-.signin-btn:hover {
+.signup-btn:hover {
   transform: translateY(-2px);
   opacity: 0.9;
 }
 
-/* 🔹 Signup Link */
-.signup-link {
+/* 🔹 Signin Link */
+.signin-link {
   margin-top: 18px;
   font-size: 14px;
   color: #444;
 }
 
-.signup-link a {
+.link-signin {
   color: #007bff;
   font-weight: 600;
   text-decoration: none;
 }
 
-.signup-link a:hover {
+.link-signin:hover {
   text-decoration: underline;
 }
 
-/* 🔹 Fade Animation */
+/* 🔹 Animation */
 @keyframes fadeInUp {
   from {
     transform: translateY(25px);

@@ -1,0 +1,40 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../Src/Adminusers.css";
+
+export default function Adminusers() {
+  const [users, setUsers] = useState([]);
+
+  const fetchUsers = async () => {
+    const res = await axios.get("http://localhost:8089/User/all-users");
+    setUsers(res.data);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  return (
+    <div className="users-container">
+      <h1>All Registered Users</h1>
+
+      <table className="users-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {users.map((u) => (
+            <tr key={u._id}>
+              <td>{u.name}</td>
+              <td>{u.email}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}

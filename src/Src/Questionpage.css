@@ -1,14 +1,167 @@
+/* ===========================
+   MAIN PAGE
+=========================== */
 .questions-page {
   padding: 40px;
   font-family: "Poppins", sans-serif;
+  background: #f8fbff;
+  position: relative;
+  z-index: 1;
+}
+
+.blur-bg {
+  filter: blur(5px);
+  pointer-events: none;
+}
+
+/* ===========================
+   HEADER
+=========================== */
+.header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
 }
 
 .questions-page h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #333;
+  margin: 0;
+  color: #222;
+  font-weight: 700;
 }
 
+/* Right side controls (timer + notes) */
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* ===========================
+   TIMER BOX
+=========================== */
+.timer-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(135deg, #007bff, #00bcd4);
+  padding: 8px 16px;
+  border-radius: 10px;
+  color: white;
+  width: auto;
+  box-shadow: 0 3px 10px rgba(0, 123, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+.timer-box h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+/* ===========================
+   BUTTONS
+=========================== */
+.start-btn,
+.submit-btn {
+  background: white;
+  color: #007bff;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.2s;
+  font-size: 13px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.start-btn {
+  padding: 6px 10px;
+  font-size: 12px;
+}
+
+.start-btn:hover,
+.submit-btn:hover {
+  background: #e6f0ff;
+}
+
+.submit-btn {
+  padding: 10px 20px;
+  font-size: 14px;
+  margin-top: 25px;
+  display: block;
+}
+
+/* ===========================
+   NOTES BUTTON FLOATING
+=========================== */
+.notes-toggle-btn {
+  /* position: fixed; */
+  right: 20px;
+  top: 150px;
+  background: linear-gradient(135deg, #007bff, #00bcd4);
+  color: white;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 2000;
+  box-shadow: 0 0 10px #0002;
+}
+
+/* ===========================
+   NOTES PANEL
+=========================== */
+.notes-panel {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 320px;
+  height: 100vh;
+  background: #ffffff;
+  box-shadow: -4px 0 10px #0003;
+  padding: 20px;
+  transition: right 0.3s ease-in-out;
+  z-index: 1999;
+}
+
+.notes-panel.open {
+  right: 0;
+}
+
+.notes-panel h3 {
+  text-align: center;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.notes-panel textarea {
+  width: 100%;
+  height: 80%;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 6px;
+  resize: none;
+  outline: none;
+  font-size: 15px;
+}
+
+.clear-notes {
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px;
+  background: #ff5252;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===========================
+   QUESTION LIST + CARDS
+=========================== */
 .question-list {
   display: flex;
   flex-direction: column;
@@ -17,41 +170,122 @@
 
 .question-card {
   background: #fff;
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 20px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.07);
+  border-left: 4px solid #007bff;
 }
 
 .question-card h4 {
   margin-bottom: 10px;
   color: #111;
+  font-weight: 600;
 }
 
+/* Options */
 ul {
-  list-style-type: none;
+  list-style: none;
   padding-left: 0;
 }
 
-li {
-  background: #f2f6fc;
-  margin: 6px 0;
-  padding: 8px 12px;
-  border-radius: 6px;
+.option-item {
+  background: #f5fbff;
+  padding: 12px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  border-left: 4px solid #007bff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
+.option-item:hover {
+  background: #e9f4ff;
+}
+
+.option-item input[type="radio"] {
+  transform: scale(1.25);
+  cursor: pointer;
+}
+
+.option-item input[disabled] {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Code Block */
 .code-block {
   background: #1e1e1e;
   color: #dcdcdc;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 12px;
+  border-radius: 8px;
   margin-top: 10px;
   font-family: monospace;
 }
 
+/* Answer textarea */
 textarea {
   width: 100%;
   min-height: 80px;
   border-radius: 8px;
   border: 1px solid #ccc;
   padding: 8px;
+  margin-top: 10px;
+}
+
+/* ===========================
+   SIGNUP POPUP
+=========================== */
+.signup-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+/* ===========================
+RESPONSIVE DESIGN
+=========================== */
+
+/* -------- Mobile -------- */
+@media (max-width: 480px) {
+  .questions-page {
+    padding: 20px;
+  }
+
+  .header-row {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .notes-toggle-btn {
+    top: 120px;
+    right: 10px;
+    padding: 10px 14px;
+  }
+
+  .submit-btn {
+    width: 100%;
+  }
+}
+
+/* -------- Tablet -------- */
+@media (max-width: 768px) {
+  .questions-page {
+    padding: 25px;
+  }
+
+  .header-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    max-width: 260px;
+  }
 }

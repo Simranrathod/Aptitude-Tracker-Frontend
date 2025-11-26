@@ -1,0 +1,54 @@
+.my-score-page {
+  max-width: 700px;
+  margin: 40px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px #0001;
+  text-align: center;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.my-score-page h2 {
+  margin-bottom: 20px;
+  font-size: 26px;
+  color: #007bff;
+}
+
+/* Table Styling */
+.my-score-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.my-score-page th {
+  background: linear-gradient(135deg, #007bff, #00bcd4);
+  color: white;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.my-score-page td {
+  padding: 10px;
+  font-size: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* Hover Row */
+.my-score-page tr:hover {
+  background: #f5faff;
+}
+
+/* No tests message */
+.my-score-page p {
+  font-size: 18px;
+  margin-top: 15px;
+  color: #666;
+}
+
+/* Fade Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}

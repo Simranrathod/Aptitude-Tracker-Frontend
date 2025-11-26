@@ -1,0 +1,67 @@
+/* Page Layout */
+.practice-page {
+  padding: 30px;
+  text-align: center;
+}
+
+.practice-page h2 {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.practice-page p {
+  font-size: 18px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+/* Grid */
+.practice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  padding: 10px;
+}
+
+/* Cards */
+.practice-card {
+  background: #ffffff;
+  padding: 25px 20px;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+  text-align: left;
+}
+
+/* Level Color Strips */
+.easy-box {
+  border-left: 8px solid #22c55e;
+}
+
+.medium-box {
+  border-left: 8px solid #eab308;
+}
+
+.hard-box {
+  border-left: 8px solid #ef4444;
+}
+
+/* Hover Effects */
+.practice-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18);
+}
+
+/* Text Styling */
+.practice-card h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.practice-card p {
+  font-size: 16px;
+  color: #444;
+}

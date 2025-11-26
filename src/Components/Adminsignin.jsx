@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 // import { useAuth } from "./UseAuth";
 
-function Signin() {
+function Adminsignin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,22 +13,17 @@ function Signin() {
   const handlelogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(" http://localhost:8089/User/signin", {
+      const response = await axios.post("http://localhost:8089/admin/adminsignin", {
         email,
         password,
       });
       // eneconsole.log(response.data);
-       // 👉 FIX: Save both user & token
-    localStorage.setItem("user", JSON.stringify(response.data.user));
-    localStorage.setItem("token", response.data.token);
-
-    console.log("User Saved:", response.data.user);
-      // const token=response.data.token 
-      // localStorage.setItem('token',token)
+      const token=response.data.token 
+      localStorage.setItem('token',token)
       console.log(token);
       if (response.status === 200) {
-        // alert("Login successful");
-        navigate("/"); 
+        alert("Login successful");
+        navigate("/admindashboard"); 
         // login(token)
       }
     } catch (err) {
@@ -70,13 +65,11 @@ function Signin() {
             Sign In
           </button>
 
-          <p className="signup-link">
-            Don’t have an account? <Link to="/Signup">Sign up</Link>
-          </p>
+         
         </form>
       </div>
     </div>
   );
 }
 
-export default Signin;
+export default  Adminsignin;

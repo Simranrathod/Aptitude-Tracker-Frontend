@@ -1,5 +1,4 @@
-/* 🔹 Center the signup box */
-.signup-container {
+ .signup-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,99 +6,5 @@
   background: linear-gradient(135deg, #007bff, #00bcd4);
   font-family: "Poppins", sans-serif;
   user-select: none;
-}
-
-/* 🔹 Signup Box */
-.signup-box {
-  background: #ffffff;
-  padding: 40px 45px;
-  border-radius: 16px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-  width: 360px;
-  text-align: center;
-  animation: fadeInUp 0.5s ease-in-out;
-}
-
-/* 🔹 Title */
-.signup-box h2 {
-  margin-bottom: 25px;
-  color: #007bff;
-  font-size: 1.8rem;
-  letter-spacing: 0.5px;
-}
-
-/* 🔹 Input Groups */
-.input-group {
-  text-align: left;
-  margin-bottom: 18px;
-}
-
-.input-group label {
-  font-size: 14px;
-  color: #333;
-  font-weight: 500;
-  margin-bottom: 5px;
-  display: block;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 10px 12px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.input-group input:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
-}
-
-/* 🔹 Signup Button */
-.signup-btn {
-  width: 100%;
-  padding: 12px;
-  background: linear-gradient(135deg, #007bff, #00bcd4);
-  border: none;
-  color: #fff;
-  font-size: 16px;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s;
-}
-
-.signup-btn:hover {
-  transform: translateY(-2px);
-  opacity: 0.9;
-}
-
-/* 🔹 Signin Link */
-.signin-link {
-  margin-top: 18px;
-  font-size: 14px;
-  color: #444;
-}
-
-.link-signin {
-  color: #007bff;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.link-signin:hover {
-  text-decoration: underline;
-}
-
-/* 🔹 Animation */
-@keyframes fadeInUp {
-  from {
-    transform: translateY(25px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
+ 
+} 

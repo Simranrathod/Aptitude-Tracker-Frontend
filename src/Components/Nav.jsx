@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import "../Src/Nav.css";
 
 export default function Nav() {
   const [hambar, sethambar] = useState(false);
+  const navigate = useNavigate()
 
   return (
     <>
@@ -34,8 +35,8 @@ export default function Nav() {
         </button>
 
         <h2>Menu</h2>
-        <button>👤 Profile</button>
-        <button>🏆 My Score</button>
+        <button onClick={() => navigate("/user-profile")}>👤 Profile</button>
+        <button onClick={() => navigate("/my-scores")}>🏆 My Score</button>
         <button>🧠 Practice Tests</button>
         <button>📊 My Progress</button>
         <button>🏅 Leaderboard</button>
