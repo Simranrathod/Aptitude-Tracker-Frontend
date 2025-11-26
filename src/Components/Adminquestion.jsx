@@ -18,7 +18,7 @@ export default function Adminquestion() {
   // Fetch ALL Questions
   const fetchQuestions = async () => {
     try {
-      const res = await axios.get("http://localhost:8089/questions/all");
+      const res = await axios.get("https://aptitude-tracker-backend1-2.onrender.com/questions/all");
       setQuestions(res.data);
     } catch (err) {
       console.error("Error fetching:", err);

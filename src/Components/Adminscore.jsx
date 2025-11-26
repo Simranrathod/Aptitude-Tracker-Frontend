@@ -10,7 +10,7 @@ export default function AdminScores() {
                 const token = localStorage.getItem("token");
                 const user = JSON.parse(localStorage.getItem("user"));
 
-                const res = await axios.get("http://localhost:8089/score/all-scores");
+                const res = await axios.get(" https://aptitude-tracker-backend1-2.onrender.com/score/all-scores");
                 setScores(res.data);
             } catch (err) {
                 console.error(err);
