@@ -13,7 +13,7 @@ function Signin() {
   const handlelogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(" https://aptitude-tracker-backend1-2.onrender.com/User/signin", {
+      const response = await axios.post("https://aptitude-tracker-backend1-2.onrender.com/User/signin", {
         email,
         password,
       });
@@ -25,7 +25,7 @@ function Signin() {
     console.log("User Saved:", response.data.user);
       // const token=response.data.token 
       // localStorage.setItem('token',token)
-      console.log(token);
+      // console.log(token);
       if (response.status === 200) {
         // alert("Login successful");
         navigate("/"); 

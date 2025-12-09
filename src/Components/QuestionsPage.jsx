@@ -157,7 +157,7 @@ export default function QuestionsPage() {
         userId: user?._id,
       });
       const res = await axios.post(
-        " https://aptitude-tracker-backend1-2.onrender.com/score/submit-score",
+        "https://aptitude-tracker-backend1-2.onrender.com/score/submit-score",
         {
 
           userId: user._id,
@@ -167,6 +167,14 @@ export default function QuestionsPage() {
           total: total
         }
       );
+      await axios.put(`https://aptitude-tracker-backend1-2.onrender.com/score/increase-tests/${user._id}`
+      );
+   const updatedUser = await axios.get(
+  `http://localhost:8089/User/user/${user._id}`
+);
+
+
+      localStorage.setItem("user", JSON.stringify(updatedUser.data));
       alert(`Your score: ${score}/${questions.length}`);
       navigate("/scorepage", { state: { score, total, level, userId: user?._id, name: user?.name, } });
 
@@ -207,6 +215,8 @@ export default function QuestionsPage() {
           Clear
         </button>
       </div>
+
+      {/* <------------------------------------------------------------------------------------> */}
       <div className={`questions-page ${isBlurred ? "blur-bg" : ""}`}>
 
         <div className="header-row">
@@ -225,9 +235,9 @@ export default function QuestionsPage() {
 
 
             </div>
-               <button className="notes-toggle-btn" onClick={() => setShowNotes(!showNotes)}>
-            Notes
-          </button>
+            <button className="notes-toggle-btn" onClick={() => setShowNotes(!showNotes)}>
+              Notes
+            </button>
 
           </div>
         </div>

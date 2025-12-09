@@ -16,6 +16,7 @@ import ScorePage from './Components/Scorepage'
 import AdminScores from './Components/Adminscore'
 import Myscore from './Components/Myscore'
 import Userprofile from './Components/Userprofile'
+import Logout from './Components/Logout'
 
 function App() {
   return (
@@ -30,9 +31,6 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/my-scores" element={<Myscore />} />
         <Route path="/user-profile" element={<Userprofile />} />
-
-
-
         <Route path='/questions/:level' element={<QuestionsPage />}></Route>
         <Route path='/admin' element={<Adminsignin />}></Route>
         <Route path='/adminquestion' element={<Adminquestion />}></Route>
@@ -40,6 +38,7 @@ function App() {
         <Route path='/admindashboard' element={<Admindashboard />}></Route>
         <Route path='/scorepage' element={<ScorePage/>}></Route>
         <Route path='/adminscore' element={<AdminScores/>}></Route>
+        <Route path='/logout' element={<Logout/>}></Route>
         
 
       </Routes>
