@@ -181,10 +181,10 @@ console.log(level);
           total: total
         }
       );
-      await axios.put(`https://aptitude-tracker-backend1-2.onrender.com/score/increase-tests/${user._id}`
+      await axios.put(`https://aptitude-tracker-backend1-3.onrender.com/score/increase-tests/${user._id}`
       );
       const updatedUser = await axios.get(
-        `https://aptitude-tracker-backend1-2.onrender.com/User/user/${user._id}`
+        `https://aptitude-tracker-backend1-3.onrender.com/User/user/${user._id}`
       );
 
 

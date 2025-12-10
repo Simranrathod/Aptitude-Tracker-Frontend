@@ -9,7 +9,7 @@ export default function MyScores() {
     if (!user) return;
 
     axios
-      .get(`https://aptitude-tracker-backend1-2.onrender.com/score/my-scores/${user._id}`)
+      .get(`https://aptitude-tracker-backend1-3.onrender.com/score/my-scores/${user._id}`)
       .then(res => setScores(res.data))
       .catch(err => console.log(err));
   }, []);

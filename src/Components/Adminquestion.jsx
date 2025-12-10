@@ -20,7 +20,7 @@ export default function Adminquestion() {
   const fetchQuestions = async () => {
     try {
       const res = await axios.get(
-        "https://aptitude-tracker-backend1-2.onrender.com/questions/all"
+        "https://aptitude-tracker-backend1-3.onrender.com/questions/all"
       );
       setQuestions(res.data);
     } catch (err) {
@@ -70,13 +70,13 @@ export default function Adminquestion() {
     try {
       if (editingId) {
         await axios.put(
-          `https://aptitude-tracker-backend1-2.onrender.com/questions/update/${editingId}`,
+          `https://aptitude-tracker-backend1-3.onrender.com/questions/update/${editingId}`,
           form
         );
         alert("Question Updated!");
       } else {
         await axios.post(
-          "https://aptitude-tracker-backend1-2.onrender.com/questions/add",
+          "https://aptitude-tracker-backend1-3.onrender.com/questions/add",
           form
         );
         alert("Question Added!");
@@ -105,7 +105,7 @@ export default function Adminquestion() {
   const deleteQuestion = async (id) => {
     if (!window.confirm("Delete this question?")) return;
     await axios.delete(
-      `https://aptitude-tracker-backend1-2.onrender.com/questions/delete/${id}`
+      `https://aptitude-tracker-backend1-3.onrender.com/questions/delete/${id}`
     );
     fetchQuestions();
   };
