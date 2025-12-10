@@ -171,7 +171,7 @@ console.log(level);
         userId: user?._id,
       });
       const res = await axios.post(
-        "https://aptitude-tracker-backend1-2.onrender.com/score/submit-score",
+        "https://aptitude-tracker-backend1-3.onrender.com/score/submit-score",
         {
 
           userId: user._id,
