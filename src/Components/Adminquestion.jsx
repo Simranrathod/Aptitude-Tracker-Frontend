@@ -249,11 +249,14 @@ export default function Adminquestion() {
                   <td>{q.question}</td>
                   <td>{q.level}</td>
                   <td>{q.type}</td>
-                 <td>
-  {q.type === "mcq" ? q.correctAnswer : q.expectedOutput || "-"}
-</td>
+                  <td>
+                    {q.type === "mcq" ? q.correctAnswer : q.expectedOutput || "-"}
+                  </td>
 
                   <td>
+                    <div className="action-buttons">
+
+                  
                     <button className="edit-btn" onClick={() => editQuestion(q)}>
                       Edit
                     </button>
@@ -264,6 +267,7 @@ export default function Adminquestion() {
                     >
                       Delete
                     </button>
+                      </div>
                   </td>
                 </tr>
               ))

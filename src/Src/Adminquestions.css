@@ -1,150 +1,242 @@
 /* ---------- MAIN CONTAINER ---------- */
 .admin-container {
   max-width: 1100px;
-  margin: 40px auto;
+  margin: 30px auto;
   padding: 20px;
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(0,0,0,0.1);
   font-family: Arial, sans-serif;
+  transition: 0.3s ease-in-out;
 }
 
 /* ---------- TITLES ---------- */
 .title {
   text-align: center;
-  font-size: 28px;
-  margin-bottom: 20px;
-  font-weight: bold;
+  font-size: 30px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  color: #333;
 }
 
 .subtitle {
-  margin: 25px 0 10px 0;
+  margin: 30px 0 10px;
   font-size: 22px;
   font-weight: bold;
+  color: #444;
 }
 
 /* ---------- FORM ---------- */
 .question-form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
+  background: #f8f9fa;
+  padding: 18px;
+  border-radius: 12px;
+  border: 1px solid #e2e2e2;
 }
 
+/* GENERAL INPUT STYLES */
+.question-form input,
+.question-form select,
 .question-form textarea {
-  width: 100%;
-  height: 90px;
   padding: 12px;
-  resize: none;
   border-radius: 8px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: 15px;
+  background: #fff;
+  transition: 0.2s;
+}
+
+.question-form input:focus,
+.question-form select:focus,
+.question-form textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0,123,255,0.4);
+}
+
+/* ---------- TEXTAREA ---------- */
+.question-form textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+/* CODE SNIPPET (if type = code) */
+.code-input {
+  min-height: 120px;
+  font-family: monospace;
+  background: #f3f6ff;
+}
+
+.output-input {
+  background: #f3fff4;
 }
 
 /* ---------- OPTIONS GRID ---------- */
 .options-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  gap: 12px;
 }
 
 .options-grid input {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
-}
-
-/* ---------- SELECT & INPUT ---------- */
-.question-form input,
-.question-form select {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  font-size: 16px;
+  padding: 12px;
 }
 
 /* ---------- SUBMIT BUTTON ---------- */
 .submit-btn {
   background: #007bff;
   color: white;
-  padding: 12px;
-  font-size: 18px;
+  padding: 13px;
+  font-size: 17px;
+  font-weight: bold;
   border: none;
-  border-radius: 8px;
+  border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
+  width: 100%;
 }
 
 .submit-btn:hover {
   background: #0056b3;
+  transform: scale(0.98);
 }
 
-/* ---------- TABLE ---------- */
+/* ---------- TABLE CONTAINER ---------- */
 .table-container {
-  margin-top: 20px;
+  margin-top: 25px;
   overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e2e2e2;
 }
 
 .question-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 15px;
+  background: #fff;
 }
 
-.question-table th,
-.question-table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  font-size: 16px;
-}
-
+/* ---------- TABLE HEAD ---------- */
 .question-table th {
-  background: #f2f2f2;
-  font-weight: bold;
+  background: #007bff;
+  color: #fff;
+  padding: 14px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
 }
 
-/* ---------- ACTION BUTTONS ---------- */
-.edit-btn,
-.delete-btn {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-right: 5px;
-  font-size: 14px;
+.question-table td {
+  padding: 14px;
+  border-bottom: 1px solid #9c9a9a;
+  font-size: 15px;
+  color: #333;
 }
 
+.question-table tr:hover {
+  background: #f8faff;
+}
+
+/* ---------- ACTION BUTTONS CONTAINER ---------- */
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- EDIT / DELETE BUTTONS ---------- */
 .edit-btn {
-  background: #ffc107;
-  color: #000;
+  background: #4caf50;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 .edit-btn:hover {
-  background: #d39e00;
+  background: #3e8e41;
 }
 
 .delete-btn {
-  background: #dc3545;
+  background: #f44336;
   color: white;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.2s;
 }
 
 .delete-btn:hover {
-  background: #a71d2a;
+  background: #c62828;
 }
 
-/* ---------- RESPONSIVE ---------- */
-@media (max-width: 600px) {
+/* ---------- RESPONSIVE DESIGN ---------- */
+@media (max-width: 900px) {
+  .admin-container {
+    margin: 15px;
+    padding: 15px;
+  }
+
   .options-grid {
     grid-template-columns: 1fr;
   }
 
   .question-table th,
   .question-table td {
+    padding: 10px;
     font-size: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 24px;
   }
 
   .submit-btn {
     font-size: 16px;
+  }
+
+  .question-form {
+    padding: 12px;
+  }
+
+  .table-container {
+    border: none;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 450px) {
+  .question-form input,
+  .question-form select,
+  .question-form textarea {
+    font-size: 14px;
+  }
+
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .submit-btn {
+    font-size: 15px;
+  }
+
+  .question-table th,
+  .question-table td {
+    font-size: 13px;
   }
 }
