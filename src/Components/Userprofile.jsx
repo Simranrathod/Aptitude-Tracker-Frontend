@@ -11,7 +11,7 @@ console.log(user);
 
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`http://localhost:8089/User/user/${localUser._id}`);
+        const res = await axios.get(`https://aptitude-tracker-backend1-2.onrender.com/User/user/${localUser._id}`);
         setUser(res.data); // backend se fresh data
       } catch (err) {
         console.log("Error fetching user data", err);

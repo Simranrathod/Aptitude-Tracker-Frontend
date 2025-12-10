@@ -66,6 +66,10 @@ import { RxCross2 } from "react-icons/rx";
 // <-----------------------------------using redux---------------->
 export default function QuestionsPage() {
 
+  // const [codeResult, setCodeResult] = useState({});
+  // const [codeOutput, setCodeOutput] = useState({});
+
+
   // <--------------------------------------for making rough note-------------------------------->
   const [showNotes, setShowNotes] = useState(false);
   const [roughText, setRoughText] = useState("");
@@ -124,16 +128,25 @@ export default function QuestionsPage() {
 
   }
   // <----------------------------------------------------------------->
-  const calculateScore = () => {
-    let score = 0;
-    questions.forEach((q, index) => {
-      // assumes each question object has `correctAnswer` field
-      if (answers[index] === q.correctAnswer) {
-        score += 1;
-      }
-    });
-    return score;
-  };
+const calculateScore = () => {
+  let score = 0;
+
+  questions.forEach((q, index) => {
+    const userAnswer = answers[index]?.toString().trim() || "";
+
+    if (q.type === "mcq") {
+      if (userAnswer === q.correctAnswer) score++;
+    }
+
+    if (q.type === "code") {
+      const expected = q.expectedOutput?.toString().trim() || "";
+      if (userAnswer === expected) score++;
+    }
+  });
+
+  return score;
+};
+
 
   // <----------------------------------------------------------------------->
 
@@ -169,9 +182,9 @@ export default function QuestionsPage() {
       );
       await axios.put(`https://aptitude-tracker-backend1-2.onrender.com/score/increase-tests/${user._id}`
       );
-   const updatedUser = await axios.get(
-  `http://localhost:8089/User/user/${user._id}`
-);
+      const updatedUser = await axios.get(
+        `https://aptitude-tracker-backend1-2.onrender.com/User/user/${user._id}`
+      );
 
 
       localStorage.setItem("user", JSON.stringify(updatedUser.data));
@@ -184,6 +197,8 @@ export default function QuestionsPage() {
       alert("Error submitting score.");
     }
   }
+
+  // <-------------------------------------------------run code-------------------------->
 
 
 
@@ -250,7 +265,9 @@ export default function QuestionsPage() {
               <h4>Q{i + 1}. {q.question}</h4>
 
 
-              {q.options && (
+              {q.type == "mcq" && q.options && (
+
+
                 <ul>
                   {q.options.map((op, index) => (
                     <li key={index} className="option-item">
@@ -266,10 +283,20 @@ export default function QuestionsPage() {
 
               {/* Code or Writing Type */}
               {q.type === "code" && (
-                <pre className="code-block">{q.codeSnippet}</pre>
-              )}
-              {q.type === "writing" && (
-                <textarea placeholder="Write your answer here..."></textarea>
+                <>
+                  <pre className="code-block">{q.codeSnippet}</pre>
+
+                  <textarea
+                    placeholder="Write OUTPUT here..."
+                    className="coding-answer-box"
+                    disabled={!isstarted}
+                    onChange={(e) => setAnswers({ ...answers, [i]: e.target.value })}
+                  />
+
+
+                  {/* SHOW OUTPUT */}
+
+                </>
               )}
             </div>
           ))}

@@ -11,6 +11,7 @@ export default function Adminquestion() {
     codeSnippet: "",
     level: "",
     type: "mcq",
+    expectedOutput: "",
   });
 
   const [editingId, setEditingId] = useState(null);
@@ -18,7 +19,9 @@ export default function Adminquestion() {
   // Fetch ALL Questions
   const fetchQuestions = async () => {
     try {
-      const res = await axios.get("https://aptitude-tracker-backend1-2.onrender.com/questions/all");
+      const res = await axios.get(
+        "https://aptitude-tracker-backend1-2.onrender.com/questions/all"
+      );
       setQuestions(res.data);
     } catch (err) {
       console.error("Error fetching:", err);
@@ -33,11 +36,13 @@ export default function Adminquestion() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
+    // LEVEL CHANGE LOGIC
     if (name === "level") {
-      let autoType = "mcq";
+      let autoType = form.type;
 
-      if (value === "medium") autoType = "mcq";
+      if (value === "easy") autoType = "mcq";
       if (value === "hard") autoType = "code";
+      // Medium → user manually change karega, isliye autoType change mat karo
 
       setForm({
         ...form,
@@ -65,15 +70,19 @@ export default function Adminquestion() {
     try {
       if (editingId) {
         await axios.put(
-          `http://localhost:8089/questions/update/${editingId}`,
+          `https://aptitude-tracker-backend1-2.onrender.com/questions/update/${editingId}`,
           form
         );
         alert("Question Updated!");
       } else {
-        await axios.post("http://localhost:8089/questions/add", form);
+        await axios.post(
+          "https://aptitude-tracker-backend1-2.onrender.com/questions/add",
+          form
+        );
         alert("Question Added!");
       }
 
+      // RESET FORM
       setForm({
         question: "",
         options: ["", "", "", ""],
@@ -81,6 +90,7 @@ export default function Adminquestion() {
         codeSnippet: "",
         level: "",
         type: "mcq",
+        expectedOutput: "",
       });
 
       setEditingId(null);
@@ -94,7 +104,9 @@ export default function Adminquestion() {
   // Delete Question
   const deleteQuestion = async (id) => {
     if (!window.confirm("Delete this question?")) return;
-    await axios.delete(`http://localhost:8089/questions/delete/${id}`);
+    await axios.delete(
+      `https://aptitude-tracker-backend1-2.onrender.com/questions/delete/${id}`
+    );
     fetchQuestions();
   };
 
@@ -107,16 +119,47 @@ export default function Adminquestion() {
       codeSnippet: q.codeSnippet || "",
       level: q.level,
       type: q.type,
+      expectedOutput: q.expectedOutput || "",
     });
     setEditingId(q._id);
   };
 
   return (
     <div className="admin-container">
-      <h1 className="title">{editingId ? "Update Question" : "Add New Question"}</h1>
+      <h1 className="title">
+        {editingId ? "Update Question" : "Add New Question"}
+      </h1>
 
       {/* FORM SECTION */}
       <form className="question-form" onSubmit={handleSubmit}>
+        {/* LEVEL */}
+        <select name="level" value={form.level} onChange={handleChange} required>
+          <option value="">Select Level</option>
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
+
+        {/* TYPE */}
+        <select
+          name="type"
+          value={form.type}
+          onChange={handleChange}
+          disabled={form.level === "easy" || form.level === "hard"}
+        >
+          {form.level === "easy" && <option value="mcq">MCQ</option>}
+
+          {form.level === "medium" && (
+            <>
+              <option value="mcq">MCQ</option>
+              <option value="code">Coding</option>
+            </>
+          )}
+
+          {form.level === "hard" && <option value="code">Coding</option>}
+        </select>
+
+        {/* QUESTION */}
         <textarea
           name="question"
           placeholder="Write question..."
@@ -125,7 +168,7 @@ export default function Adminquestion() {
           required
         ></textarea>
 
-        {/* SHOW MCQ Options only if type === 'mcq' */}
+        {/* MCQ FIELDS */}
         {form.type === "mcq" && (
           <>
             <div className="options-grid">
@@ -150,43 +193,28 @@ export default function Adminquestion() {
           </>
         )}
 
-        {/* SHOW coding textarea only if type === 'code' */}
+        {/* CODE SNIPPET */}
         {form.type === "code" && (
-          <textarea
-            name="codeSnippet"
-            placeholder="Write code snippet..."
-            value={form.codeSnippet}
-            onChange={handleChange}
-            className="code-input"
-            required
-          ></textarea>
+          <>
+            <textarea
+              name="codeSnippet"
+              placeholder="Write code snippet..."
+              value={form.codeSnippet}
+              onChange={handleChange}
+              className="code-input"
+              required
+            ></textarea>
+
+            <input
+              name="expectedOutput"
+              placeholder="Expected output here..."
+              value={form.expectedOutput}
+              onChange={handleChange}
+              className="output-input"
+              required
+            />
+          </>
         )}
-
-        <select name="level" value={form.level} onChange={handleChange} required>
-          <option value="">Select Level</option>
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
-
-        {/* TYPE DROPDOWN → auto filtered based on Level */}
-        <select
-          name="type"
-          value={form.type}
-          onChange={handleChange}
-          disabled={form.level === "easy" || form.level === "hard"}
-        >
-          {form.level === "easy" && <option value="mcq">MCQ</option>}
-
-          {form.level === "medium" && (
-            <>
-              <option value="mcq">MCQ</option>
-              <option value="code">Coding</option>
-            </>
-          )}
-
-          {form.level === "hard" && <option value="code">Coding</option>}
-        </select>
 
         <button type="submit" className="submit-btn">
           {editingId ? "Update" : "Add Question"}
@@ -221,7 +249,8 @@ export default function Adminquestion() {
                   <td>{q.question}</td>
                   <td>{q.level}</td>
                   <td>{q.type}</td>
-                  <td>{q.correctAnswer || "-"}</td>
+                <td>{q.type === "mcq" ? q.correctAnswer : q.expectedOutput}</td>
+
                   <td>
                     <button className="edit-btn" onClick={() => editQuestion(q)}>
                       Edit
