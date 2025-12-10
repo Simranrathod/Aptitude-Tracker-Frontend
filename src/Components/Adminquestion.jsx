@@ -249,7 +249,9 @@ export default function Adminquestion() {
                   <td>{q.question}</td>
                   <td>{q.level}</td>
                   <td>{q.type}</td>
-                <td>{q.type === "mcq" ? q.correctAnswer : q.expectedOutput}</td>
+                 <td>
+  {q.type === "mcq" ? q.correctAnswer : q.expectedOutput || "-"}
+</td>
 
                   <td>
                     <button className="edit-btn" onClick={() => editQuestion(q)}>

@@ -10,8 +10,13 @@ const Reducers=(state=initialState,Action)=>{
     switch(Action.type){
         case'request':
         return{...state,loading:true}
-case'success':
-return {loading:false,questions:Action.payload,error:null}
+case "success":
+   return {
+      loading: false,
+      questions: Action.payload,
+      error: null
+   }
+
 case'fail':
 return {loading:false,questions:[],error:Action.payload}
     

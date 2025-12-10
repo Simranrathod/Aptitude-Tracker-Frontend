@@ -66,8 +66,7 @@ import { RxCross2 } from "react-icons/rx";
 // <-----------------------------------using redux---------------->
 export default function QuestionsPage() {
 
-  // const [codeResult, setCodeResult] = useState({});
-  // const [codeOutput, setCodeOutput] = useState({});
+
 
 
   // <--------------------------------------for making rough note-------------------------------->
@@ -76,6 +75,9 @@ export default function QuestionsPage() {
 
   const navigate = useNavigate();
   const { level } = useParams()
+ 
+console.log(level);
+
   const dispatch = useDispatch()
   const { loading, questions, error } = useSelector(
     (state) => state.items
@@ -128,25 +130,24 @@ export default function QuestionsPage() {
 
   }
   // <----------------------------------------------------------------->
-const calculateScore = () => {
-  let score = 0;
+  const calculateScore = () => {
+    let score = 0;
+    questions.forEach((q, index) => {
+     
+      if (q.type === "mcq") {
+        if (answers[index] === q.correctAnswer) score += 1;
+      }
 
-  questions.forEach((q, index) => {
-    const userAnswer = answers[index]?.toString().trim() || "";
+      if (q.type === "code") {
+        const user = answers[index]?.toString().trim() || "";
+        const expected = q.expectedOutput?.toString().trim() || "";
 
-    if (q.type === "mcq") {
-      if (userAnswer === q.correctAnswer) score++;
-    }
+        if (user === expected) score += 1;
+      }
 
-    if (q.type === "code") {
-      const expected = q.expectedOutput?.toString().trim() || "";
-      if (userAnswer === expected) score++;
-    }
-  });
-
-  return score;
-};
-
+    });
+    return score;
+  };
 
   // <----------------------------------------------------------------------->
 
