@@ -17,7 +17,9 @@ function Adminsignin() {
         email,
         password,
       });
-      // eneconsole.log(response.data);
+     console.log(response.data);
+console.log(response.data.token);
+
       const token=response.data.token 
       localStorage.setItem('admintoken',token)
       console.log(token);

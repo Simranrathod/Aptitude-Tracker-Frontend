@@ -17,6 +17,7 @@ import AdminScores from './Components/Adminscore'
 import Myscore from './Components/Myscore'
 import Userprofile from './Components/Userprofile'
 import Logout from './Components/Logout'
+import Adminprotectedrouter from './Components/Admin/Adminprotectedrouter'
 
 function App() {
   return (
@@ -33,12 +34,13 @@ function App() {
         <Route path="/user-profile" element={<Userprofile />} />
         <Route path='/questions/:level' element={<QuestionsPage />}></Route>
         <Route path='/admin' element={<Adminsignin />}></Route>
-        <Route path='/adminquestion' element={<Adminquestion />}></Route>
-        <Route path='//admin/users' element={<Adminusers />}></Route>
-        <Route path='/admindashboard' element={<Admindashboard />}></Route>
-        <Route path='/scorepage' element={<ScorePage/>}></Route>
-        <Route path='/adminscore' element={<AdminScores/>}></Route>
+        <Route path='/adminquestion' element={<Adminprotectedrouter><Adminquestion/></Adminprotectedrouter>}></Route>
+        <Route path='//admin/users' element={<Adminprotectedrouter><Adminusers /></Adminprotectedrouter>}></Route>
+        <Route path='/admindashboard' element={<Adminprotectedrouter><Admindashboard /></Adminprotectedrouter>}></Route>
+        <Route path='/adminscore' element={<Adminprotectedrouter><AdminScores/></Adminprotectedrouter>}></Route>
+      
         <Route path='/logout' element={<Logout/>}></Route>
+            <Route path='/scorepage' element={<ScorePage/>}></Route>
         
 
       </Routes>
