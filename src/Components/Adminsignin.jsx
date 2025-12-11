@@ -19,7 +19,7 @@ function Adminsignin() {
       });
       // eneconsole.log(response.data);
       const token=response.data.token 
-      localStorage.setItem('token',token)
+      localStorage.setItem('admintoken',token)
       console.log(token);
       if (response.status === 200) {
         alert("Login successful");

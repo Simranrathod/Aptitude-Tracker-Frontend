@@ -6,9 +6,27 @@ export default function Adminusers() {
   const [users, setUsers] = useState([]);
 
   const fetchUsers = async () => {
-    const res = await axios.get("https://aptitude-tracker-backend1-3.onrender.com/User/all-users");
-    setUsers(res.data);
-  };
+    try {
+
+
+      const res = await axios.get("https://aptitude-tracker-backend1-3.onrender.com/admin/all-users",
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+          },
+        });
+      setUsers(res.data);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status === 401) {
+        alert("Session expired! Please login again.");
+        localStorage.removeItem("admintoken");
+        window.location.href = "/admin-login";
+      }
+    }
+  }
+
+
 
   useEffect(() => {
     fetchUsers();

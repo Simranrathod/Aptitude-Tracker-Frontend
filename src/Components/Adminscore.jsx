@@ -10,7 +10,12 @@ export default function AdminScores() {
                 const token = localStorage.getItem("token");
                 const user = JSON.parse(localStorage.getItem("user"));
 
-                const res = await axios.get("https://aptitude-tracker-backend1-3.onrender.com/score/all-scores");
+                const res = await axios.get("https://aptitude-tracker-backend1-3.onrender.com/admin/all-scores",
+                    {
+                        headers: {
+                            Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+                        },
+                    });
                 setScores(res.data);
             } catch (err) {
                 console.error(err);
@@ -33,7 +38,7 @@ export default function AdminScores() {
 
                             {/* <td>{s.userId?.name || "Unknown"}</td> */}
 
-                          <td>{s.userId?.name || s.name}</td>
+                            <td>{s.userId?.name || s.name}</td>
 
                             <td>{s.level}</td>
                             <td>{s.score}</td>

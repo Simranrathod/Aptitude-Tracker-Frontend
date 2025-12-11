@@ -302,7 +302,7 @@ console.log(level);
             </div>
           ))}
         </div>
-        <button className="submit-btn" onClick={handlesubmit} disabled={!isstarted} >
+        <button className="submit-btn1" onClick={handlesubmit} disabled={!isstarted} >
           Submit Test
         </button>
       </div>

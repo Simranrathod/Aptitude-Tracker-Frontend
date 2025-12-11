@@ -71,13 +71,23 @@ export default function Adminquestion() {
       if (editingId) {
         await axios.put(
           `https://aptitude-tracker-backend1-3.onrender.com/questions/update/${editingId}`,
-          form
+          form,
+  {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+    },
+  }
         );
         alert("Question Updated!");
       } else {
         await axios.post(
           "https://aptitude-tracker-backend1-3.onrender.com/questions/add",
-          form
+          form,
+           {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+    },
+  }
         );
         alert("Question Added!");
       }
@@ -105,7 +115,12 @@ export default function Adminquestion() {
   const deleteQuestion = async (id) => {
     if (!window.confirm("Delete this question?")) return;
     await axios.delete(
-      `https://aptitude-tracker-backend1-3.onrender.com/questions/delete/${id}`
+      `https://aptitude-tracker-backend1-3.onrender.com/questions/delete/${id}`,
+      {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+    },
+  }
     );
     fetchQuestions();
   };
