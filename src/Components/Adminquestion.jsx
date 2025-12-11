@@ -19,8 +19,13 @@ export default function Adminquestion() {
   // Fetch ALL Questions
   const fetchQuestions = async () => {
     try {
-      const res = await axios.get(
-        "https://aptitude-tracker-backend1-3.onrender.com/questions/all"
+      const res = await axios.get("https://aptitude-tracker-backend1-3.onrender.com/questions/all",
+        form,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+          },
+        }
       );
       setQuestions(res.data);
     } catch (err) {
@@ -72,22 +77,22 @@ export default function Adminquestion() {
         await axios.put(
           `https://aptitude-tracker-backend1-3.onrender.com/questions/update/${editingId}`,
           form,
-  {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
-    },
-  }
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+            },
+          }
         );
         alert("Question Updated!");
       } else {
         await axios.post(
           "https://aptitude-tracker-backend1-3.onrender.com/questions/add",
           form,
-           {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
-    },
-  }
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+            },
+          }
         );
         alert("Question Added!");
       }
@@ -117,10 +122,10 @@ export default function Adminquestion() {
     await axios.delete(
       `https://aptitude-tracker-backend1-3.onrender.com/questions/delete/${id}`,
       {
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
-    },
-  }
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("admintoken")}`,
+        },
+      }
     );
     fetchQuestions();
   };
@@ -271,18 +276,18 @@ export default function Adminquestion() {
                   <td>
                     <div className="action-buttons">
 
-                  
-                    <button className="edit-btn" onClick={() => editQuestion(q)}>
-                      Edit
-                    </button>
 
-                    <button
-                      className="delete-btn"
-                      onClick={() => deleteQuestion(q._id)}
-                    >
-                      Delete
-                    </button>
-                      </div>
+                      <button className="edit-btn" onClick={() => editQuestion(q)}>
+                        Edit
+                      </button>
+
+                      <button
+                        className="delete-btn"
+                        onClick={() => deleteQuestion(q._id)}
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </td>
                 </tr>
               ))
