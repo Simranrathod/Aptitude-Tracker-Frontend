@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "../Src/Questionpage.css";
-import { useParams } from "react-router-dom";
+import { data, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Action from "../Redux/Action";
 import { useNavigate } from "react-router-dom";
@@ -75,13 +75,13 @@ export default function QuestionsPage() {
 
   const navigate = useNavigate();
   const { level } = useParams()
- 
-console.log(level);
 
+  console.log(level);
+  // <--------------------------------------------------this is fetch data from redux------->
   const dispatch = useDispatch()
   const { loading, questions, error } = useSelector(
     (state) => state.items
-  );
+  ); 
 
   // <-----------------------------for blur effect----------------------->
   const [isBlurred, setIsBlurred] = useState(false);
@@ -100,7 +100,7 @@ console.log(level);
   }, [level]);
 
   // <------------------------------------fo options selection------------------->
-  const [answers, setAnswers] = useState({});
+ 
 
   useEffect(() => {
     if (level) dispatch(Action(level))
@@ -123,17 +123,20 @@ console.log(level);
 
     return () => clearInterval(timer)
   }, [isstarted, timeleft])
+
   const formattime = (seconds) => {
     const min = Math.floor(seconds / 60);
     const sec = seconds % 60;
     return `${min < 10 ? "0" + min : min}:${sec < 10 ? "0" + sec : sec}`;
 
   }
-  // <----------------------------------------------------------------->
+  // <------------------------store the answer----------------------------------------->
+   const [answers, setAnswers] = useState({});
+  //  <----------------------------------------calculate the score------------------->
   const calculateScore = () => {
     let score = 0;
     questions.forEach((q, index) => {
-     
+
       if (q.type === "mcq") {
         if (answers[index] === q.correctAnswer) score += 1;
       }
@@ -164,7 +167,7 @@ console.log(level);
 
       // const token=localStorage.getItem("token");
       console.log({
-        // name: user?.name,
+       
         score: score,
         level: levelName,
         total: total,
@@ -183,12 +186,12 @@ console.log(level);
       );
       await axios.put(`https://aptitude-tracker-backend1-3.onrender.com/score/increase-tests/${user._id}`
       );
-      const updatedUser = await axios.get(
+      const updateduser = await axios.get(
         `https://aptitude-tracker-backend1-3.onrender.com/User/user/${user._id}`
       );
 
 
-      localStorage.setItem("user", JSON.stringify(updatedUser.data));
+      localStorage.setItem("user", JSON.stringify(updateduser.data));
       alert(`Your score: ${score}/${questions.length}`);
       navigate("/scorepage", { state: { score, total, level, userId: user?._id, name: user?.name, } });
 

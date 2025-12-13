@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Src/Signup.css";
 
-import axios from "axios";
+
 
 import Signupmain from "./Signupmain";
 

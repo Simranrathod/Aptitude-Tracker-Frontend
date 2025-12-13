@@ -20,7 +20,7 @@ export default function Adminquestion() {
   const fetchQuestions = async () => {
     try {
       const res = await axios.get("https://aptitude-tracker-backend1-3.onrender.com/questions/all",
-        form,
+     
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("admintoken")}`,

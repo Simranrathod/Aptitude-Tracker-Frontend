@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import "../Src/Signin.css";
 import { useNavigate, Link } from "react-router-dom";
 import axios from "axios";
-// import { useAuth } from "./UseAuth";
+
 
 function Signin() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-//   const {login}=useAuth()
+
 
   const handlelogin = async (e) => {
     e.preventDefault();
@@ -17,19 +17,20 @@ function Signin() {
         email,
         password,
       });
-      // eneconsole.log(response.data);
-       // 👉 FIX: Save both user & token
+      // console.log(response.data);
+       // Save both user & token
     localStorage.setItem("user", JSON.stringify(response.data.user));
+     // const token=response.data.token
     localStorage.setItem("token", response.data.token);
-
-    console.log("User Saved:", response.data.user);
-      // const token=response.data.token 
+  
+    console.log("User", response.data.user);
+    
       // localStorage.setItem('token',token)
       // console.log(token);
       if (response.status === 200) {
         // alert("Login successful");
         navigate("/"); 
-        // login(token)
+      
       }
     } catch (err) {
       if (err.response) {

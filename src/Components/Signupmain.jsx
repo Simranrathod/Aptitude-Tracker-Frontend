@@ -2,12 +2,11 @@ import React, { useState } from "react";
 import "../Src/Signupmain.css";
 // import { useNavigate } from "react-router-dom";
 import axios from "axios";
-// import { useAuth } from "./UseAuth";
 import { useNavigate, Link } from "react-router-dom";
 
 function Signupmain() {
   const navigate = useNavigate();
-  //   const {login} = useAuth()
+
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,7 +29,7 @@ function Signupmain() {
       if (response.status === 200) {
         localStorage.setItem("userSignedUp", "true");
         navigate("/signin");
-        //   login(response.data.token)
+       
 
       }
 
