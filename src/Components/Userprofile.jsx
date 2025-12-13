@@ -21,7 +21,7 @@ console.log(user);
     fetchUser();
   }, []);
 
-  if (!user) return <h2>Loading profile...</h2>;
+  if (!user) return <h2>No profile...</h2>;
 
   return (
     <div className="profile-container">
@@ -32,14 +32,14 @@ console.log(user);
           className="profile-pic"
         />
 
-        <h2>{user.name}</h2>
-        <p className="email">{user.email}</p>
+        <h2>{localUser.name}</h2>
+        <p className="email">{localUser.email}</p>
         <p className="joined-date">
-          Joined on: {new Date(user.createdAt).toLocaleDateString()}
+          Joined on: {new Date(localUser.createdAt).toLocaleDateString()}
         </p>
 
         <p className="stats">
-          Total Tests: {user.totalTests}
+          Total Tests: {localUser.totalTests}
         </p>
 
       </div>
